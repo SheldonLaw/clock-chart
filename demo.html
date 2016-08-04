@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>d3可视化</title>
+    <script src="./d3.js"></script>
+    <script src="./clock-chart.js"></script>
+    <style>
+      #demo {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <svg id="demo">
+    </svg>
+    <script>
+      //DEMO
+      //①HTML中添加<svg id="demo"></svg>
+      //②CSS给#demo指定宽高
+      //③JS传参创建ClockChart示例
+      var data = [82, 181, 142, 27, 0, 56, 94, 151, 43, 33, 152, 175, 50, 19, 175, 184, 111, 77, 196, 0, 128, 118, 156, 158];
+      var clock_chart = new ClockChart({
+        container: "demo",
+        data: data,
+        content: {
+          text: "pv: 200万",
+          subtext: "↑ 50%"
+        }
+      })
+    </script>
+  </body>
+</html>
