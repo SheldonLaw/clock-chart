@@ -37,7 +37,7 @@ ClockChart.prototype = {
       outer_circle : "#00A5E0",   //圆环颜色（时钟背景色）
       bar : "#01579b",            //外围柱子颜色
       bar_hover: "#00A5E0"          //外围柱子选中颜色
-    }
+    };
     var svg = d3.select('#' + svg_id);
     svg.selectAll('*').remove();    //先清除后创建
     //主体信息
@@ -54,7 +54,7 @@ ClockChart.prototype = {
       .attr('r', r)
       .attr('stroke', colors.outer_circle)
       .attr('stroke-width', stroke_width)
-      .attr('fill', colors.inner_circle)
+      .attr('fill', colors.inner_circle);
     svg.append('g')
       .selectAll('text')
         .data(hours)
@@ -65,13 +65,13 @@ ClockChart.prototype = {
           .attr('stroke', 'white')
           .attr('text-anchor', 'middle')
           .attr('fill', 'white')
-          .text(function(h){ return h })
+          .text(function(h){ return h; });
     //2,画中间内容
     renderContent(this._opts.content);
     //3,画柱子
     var clock_data = [];
     hours.forEach(function(x, i) {
-      clock_data.push({key:x, value: data[i] })
+      clock_data.push({key:x, value: data[i] });
     });
     var max = center_x > center_y ? center_y - r - stroke_width : center_x - r - stroke_width;
     var scale = d3.scaleLinear().domain([0, d3.max(data)]).range([0, max]);   //比例尺
@@ -82,8 +82,8 @@ ClockChart.prototype = {
         .enter()
         .append('g')
           .attr("transform","translate("+center_x+","+center_y+")")
-          .on("mouseover", function(item){onOver(this,item)} )
-          .on("mouseout", function(){onExit(this)} )
+          .on("mouseover", function(item){onOver(this,item);} )
+          .on("mouseout", function(){onExit(this);} );
     arcs.append("path")
       .attr("fill", colors.bar)
       .transition()
@@ -95,7 +95,7 @@ ClockChart.prototype = {
           startAngle: d.key%24 * Math.PI/12 - Math.PI/24,
           endAngle: (d.key%24 + 1) * Math.PI/12 - Math.PI/24
         });
-      })
+      });
     function onOver(target, item) {
       renderContent({text: item.value, subtext: item.key + "点"});
       //高亮当前部分
@@ -120,7 +120,7 @@ ClockChart.prototype = {
         .attr('y', center_y)
         .attr('text-anchor', 'middle')
         .style('font-size', '25px')
-        .text(content.text)
+        .text(content.text);
       svg.append('text')
         .attr('class', 'content')
         .attr('x', center_x)
@@ -129,7 +129,7 @@ ClockChart.prototype = {
         .style('font-size', '20px')
         .attr('stroke', 'grey')
         .attr('fill', 'grey')
-        .text(content.subtext)
+        .text(content.subtext);
     }
   },
 
@@ -141,7 +141,7 @@ ClockChart.prototype = {
         temp();
       }
       resizeOrNot();
-    }
+    };
     //实现onresizeend
     var resize_timer = null;
     function resizeOrNot() {
